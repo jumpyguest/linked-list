@@ -51,6 +51,43 @@ class LinkedList
     nil
   end
 
+  def insert_at(value, index)
+    raise "invalid index" if index >= @size
+    if index == 0
+      prepend(value)
+    else
+      node = @head
+      for i in 0..index-1
+        if i == index-1
+          temp_node = node.next_node
+          node.next_node = Node.new(value)
+          node.next_node.next_node = temp_node
+          @size += 1
+          break;
+        end
+        node = node.next_node
+      end
+    end
+  end
+
+  def remove_at(index)
+    raise "invalid index" if index >= @size
+    node = @head
+    if index == 0
+      @head = node.next_node
+    else
+      for i in 0..index-1
+        if i == index-1
+          temp_node = node.next_node
+          node.next_node = temp_node.next_node
+          break
+        end
+        node = node.next_node
+      end
+    end
+    @size -= 1
+  end
+
   def pop
     node = @head
     return node if @size == 1
