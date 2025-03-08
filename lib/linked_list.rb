@@ -11,7 +11,7 @@ class LinkedList
       @head = new_node
     else
       node = @head
-      for i in 0..@size-1
+      @size.times do
         node.next_node = new_node if node.next_node == nil
         node = node.next_node
       end
@@ -101,7 +101,7 @@ class LinkedList
 
   def contains?(value)
     node = @head
-    for i in 0..@size-1
+    @size.times do
       if value == node.value
         return true
       else
@@ -126,7 +126,7 @@ class LinkedList
   def to_s
     string = ""
     node = @head
-    for i in 0..@size-1
+    @size.times do
       string += "( #{node.value} ) -> "
       node = node.next_node
     end

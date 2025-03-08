@@ -21,7 +21,7 @@ p list.head
 p list.pop
 puts list
 
-p list.contains?('cow')
+p list.contains?('deer')
 p list.find('snake')
 list.insert_at('rooster', 4)
 puts list
