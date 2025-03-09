@@ -8,7 +8,7 @@ This repository contains solutions for the linked-list project.
 
 ### LinkedList
 Class that represents the full list.
-```
+```ruby
 class LinkedList
   def initialize
     @head = nil
@@ -34,7 +34,7 @@ class LinkedList
 
 ### Node
 Class that represents a node in the linked list.
-```
+```ruby
 class Node
   attr_accessor :value, :next_node
 
