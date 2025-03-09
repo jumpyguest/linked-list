@@ -12,7 +12,7 @@ class LinkedList
     else
       node = @head
       @size.times do
-        node.next_node = new_node if node.next_node == nil
+        node.next_node = new_node if node.next_node.nil?
         node = node.next_node
       end
     end
@@ -27,43 +27,33 @@ class LinkedList
     @size += 1
   end
 
-  def size
-    @size
-  end
-
-  def head
-    @head
-  end
-
-  def tail
-    @tail
-  end
+  attr_reader :size, :head, :tail
 
   def at(index)
     node = @head
-    for i in 0..@size-1
-      if i == index
-        return node
-      else
-        node = node.next_node
-      end
+    for i in 0..@size - 1
+      return node if i == index
+
+      node = node.next_node
+
     end
     nil
   end
 
   def insert_at(value, index)
-    raise "invalid index" if index >= @size
+    raise 'invalid index' if index >= @size
+
     if index == 0
       prepend(value)
     else
       node = @head
-      for i in 0..index-1
-        if i == index-1
+      for i in 0..index - 1
+        if i == index - 1
           temp_node = node.next_node
           node.next_node = Node.new(value)
           node.next_node.next_node = temp_node
           @size += 1
-          break;
+          break
         end
         node = node.next_node
       end
@@ -71,13 +61,14 @@ class LinkedList
   end
 
   def remove_at(index)
-    raise "invalid index" if index >= @size
+    raise 'invalid index' if index >= @size
+
     node = @head
     if index == 0
       @head = node.next_node
     else
-      for i in 0..index-1
-        if i == index-1
+      for i in 0..index - 1
+        if i == index - 1
           temp_node = node.next_node
           node.next_node = temp_node.next_node
           break
@@ -91,8 +82,10 @@ class LinkedList
   def pop
     node = @head
     return node if @size == 1
-    for i in 0..@size-1
-      break if i == @size-2
+
+    for i in 0..@size - 1
+      break if i == @size - 2
+
       node = node.next_node
     end
     node.next_node = nil
@@ -101,30 +94,27 @@ class LinkedList
 
   def contains?(value)
     node = @head
-    @size.times do
-      if value == node.value
-        return true
-      else
-        node = node.next_node
-      end
+    while node
+      return true if value == node.value
+
+      node = node.next_node
     end
-    return false
+    false
   end
 
   def find(value)
     node = @head
-    for i in 0..@size-1
-      if value == node.value
-        return i
-      else 
-        node = node.next_node
-      end
+    for i in 0..@size - 1
+      return i if value == node.value
+
+      node = node.next_node
+
     end
-    return nil
+    nil
   end
 
   def to_s
-    string = ""
+    string = ''
     node = @head
     @size.times do
       string += "( #{node.value} ) -> "

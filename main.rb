@@ -27,3 +27,4 @@ list.insert_at('rooster', 4)
 puts list
 list.remove_at(1)
 puts list
+p list.contains?('rabbit')
